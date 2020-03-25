@@ -1,0 +1,19 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "Notes project which is showing working of module core & own. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rahulss16/notes-app.git"
+  },
+  "author": "Rahul Singh Shekhawat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rahulss16/notes-app/issues"
+  },
+  "homepage": "https://github.com/Rahulss16/notes-app#readme"
+}
