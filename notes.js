@@ -24,6 +24,18 @@ const addNote = function (title,body) {
         console.log(chalk.red.inverse.bold('Note Title already added!'))
     }
 }
+const removeNote = function (title) {
+    const notes = loadNotes()
+    const notesToKeep = notes.filter(function (note) {
+        return note.title !== title
+    })
+    if(notes.length > notesToKeep.length){
+        console.log(chalk.green.inverse.bold('Note Removed!'))
+        saveNotes(notesToKeep)
+    }else {
+        console.log(chalk.red.inverse.bold('Note '+ title + ' not exists!'))
+    }
+}
 
 const saveNotes = function (notes) {
     const dataJSON = JSON.stringify(notes);
@@ -42,4 +54,5 @@ const loadNotes = function () {
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
+    removeNote: removeNote
 }
