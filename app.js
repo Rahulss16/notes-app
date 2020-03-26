@@ -1,16 +1,63 @@
 const validator = require('validator')
-const chalk = require('chalk')
-const fs = require('fs');
-const getNotes = require('./notes.js');
-
-// fs libarary is file system from nodeJS
-// getNotes show how to import own module in node. it export title & body for notes.
-fs.writeFileSync('notes.txt', getNotes().title)
-fs.appendFileSync('notes.txt', getNotes().body)
+const yargs = require('yargs')
+const notes = require('./notes.js');
 
 
 //example of validator package
 console.log(validator.isEmail('rahul@24x7host.com'))
 
-// example of chalk package
-console.log(chalk.green.inverse.bold(getNotes().title));
+// console.log(process.argv); -- to get cmd variables from url node app.js rahul (File System and Command Line Args) then process.argv[2] === 'rahul'
+
+// create add command
+
+yargs.command({
+    command: "add",
+    describe: "Add a new note",
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: "string"
+        },
+        body: {
+            describe: "Note body",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function (argv) {
+        notes.addNote(argv.title, argv.body)
+    }
+})
+
+// create remove command
+
+yargs.command({
+    command: "remove",
+    describe: "Remove a note",
+    handler: function () {
+        console.log('Removed a note.')
+    }
+})
+
+// create list command
+
+yargs.command({
+    command: "list",
+    describe: "Listing all notes",
+    handler: function () {
+        console.log('Listed all notes.')
+    }
+})
+
+// create read command
+
+yargs.command({
+    command: "read",
+    describe: "Read a note",
+    handler: function () {
+        console.log('Reading a note.')
+    }
+})
+
+yargs.parse()
