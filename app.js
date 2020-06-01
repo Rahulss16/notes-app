@@ -4,7 +4,7 @@ const notes = require('./notes.js');
 
 
 //example of validator package
-console.log(validator.isEmail('rahul@24x7host.com'))
+//console.log(validator.isEmail('rahul@24x7host.com'))
 
 // console.log(process.argv); -- to get cmd variables from url node app.js rahul (File System and Command Line Args) then process.argv[2] === 'rahul'
 
@@ -25,7 +25,7 @@ yargs.command({
             type: "string"
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         notes.addNote(argv.title, argv.body)
     }
 })
@@ -42,7 +42,7 @@ yargs.command({
             type: "string"
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         notes.removeNote(argv.title)
     }
 })
@@ -52,8 +52,8 @@ yargs.command({
 yargs.command({
     command: "list",
     describe: "Listing all notes",
-    handler: function () {
-        console.log('Listed all notes.')
+    handler() {
+        notes.listNotes()
     }
 })
 
@@ -62,8 +62,15 @@ yargs.command({
 yargs.command({
     command: "read",
     describe: "Read a note",
-    handler: function () {
-        console.log('Reading a note.')
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function (argv) {
+        notes.readNote(argv.title)
     }
 })
 
