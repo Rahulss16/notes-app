@@ -1,28 +1,24 @@
-const validator = require('validator')
+const chalk = require('chalk')
 const yargs = require('yargs')
-const notes = require('./notes.js');
+const notes = require('./notes.js')
 
+// Customize yargs version
+yargs.version('1.1.0')
 
-//example of validator package
-//console.log(validator.isEmail('rahul@24x7host.com'))
-
-// console.log(process.argv); -- to get cmd variables from url node app.js rahul (File System and Command Line Args) then process.argv[2] === 'rahul'
-
-// create add command
-
+// Create add command
 yargs.command({
-    command: "add",
-    describe: "Add a new note",
+    command: 'add',
+    describe: 'Add a new note',
     builder: {
         title: {
-            describe: "Note title",
+            describe: 'Note title',
             demandOption: true,
-            type: "string"
+            type: 'string'
         },
         body: {
-            describe: "Note body",
+            describe: 'Note body',
             demandOption: true,
-            type: "string"
+            type: 'string'
         }
     },
     handler(argv) {
@@ -30,16 +26,15 @@ yargs.command({
     }
 })
 
-// create remove command
-
+// Create remove command
 yargs.command({
-    command: "remove",
-    describe: "Remove a note",
+    command: 'remove',
+    describe: 'Remove a note',
     builder: {
         title: {
-            describe: "Note title",
+            describe: 'Note title',
             demandOption: true,
-            type: "string"
+            type: 'string'
         }
     },
     handler(argv) {
@@ -47,29 +42,27 @@ yargs.command({
     }
 })
 
-// create list command
-
+// Create list command
 yargs.command({
-    command: "list",
-    describe: "Listing all notes",
+    command: 'list',
+    describe: 'List your notes',
     handler() {
         notes.listNotes()
     }
 })
 
-// create read command
-
+// Create read command
 yargs.command({
-    command: "read",
-    describe: "Read a note",
+    command: 'read',
+    describe: 'Read a note',
     builder: {
         title: {
-            describe: "Note title",
+            describe: 'Note title',
             demandOption: true,
-            type: "string"
+            type: 'string'
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         notes.readNote(argv.title)
     }
 })
