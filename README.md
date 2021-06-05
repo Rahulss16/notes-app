@@ -7,17 +7,17 @@ Learn import npm packages and how to use in code.
 
 # Create Note
 
-    ## node app.js add --title="Buy" --body="Note body here" ##
+    node app.js add --title="Buy" --body="Note body here"
 
 # List Notes
 
-    ## node app.js list
+    node app.js list
 
 # Read Note
 
-    ## node app.js read --title="Buy"
+    node app.js read --title="Buy"
 
 # Remove Note
 
-    ## node app.js remove --title="Note Title"
+    node app.js remove --title="Note Title"
  
